@@ -1,0 +1,100 @@
+
+* {
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+
+html {
+    -webkit-text-size-adjust: 100%;   /* 禁止移动端在横屏是字体大小自动调整 */
+    -ms-text-size-adjust: 100%;
+    font-size: 16px;
+}
+
+body {
+    /* font-family: "PingFang SC", "Helvetica Neue", Helvetica, Arial, "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif; */
+    font-family:'Courier New', Courier, monospace, sans-serif;
+}
+
+a, div, button, input, span, img {
+    text-decoration: none;
+    -webkit-tap-highlight-color: transparent;   /* 不高亮 */
+}
+
+label, input, select, textarea {
+    vertical-align: middle;
+    outline: 0;
+}
+
+img {
+    border: none;
+}
+
+em {
+    font-style: normal;
+    font-weight: normal;
+}
+
+ul {
+    list-style: none;
+}
+
+/* flex布局 */
+.flex {  
+	display: -webkit-box;
+    display: -moz-box;
+    display: box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+}
+
+/* 清除浮动 */
+.clearfix {
+    zoom: 1;
+}
+.clearfix::after {
+    content: "";
+    display: block;
+    clear: both;
+    height: 0;
+    visibility: hidden;
+}
+
+
+/* 自适应 */
+@media only screen and (min-width: 320px){
+    html {
+        font-size: 43% !important; 
+    }
+}
+
+@media only screen and (min-width: 360px){
+    html {
+        font-size: 48% !important; 
+    }
+}
+
+@media only screen and (min-width: 375px){
+    html {
+        font-size: 50% !important; 
+    }
+}
+
+@media only screen and (min-width: 414px){
+    html {
+        font-size: 54.8% !important; 
+    }
+}
+
+@media only screen and (min-width: 750px){
+    html {
+      font-size: 100% !important; 
+    }
+}
+
+@media only screen and (min-width: 1024px){
+    html {
+        font-size: 138% !important;
+    }
+}

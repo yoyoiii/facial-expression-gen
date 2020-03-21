@@ -1,0 +1,278 @@
+
+.main {
+    width: 70%;
+    max-width: 600px;
+    margin: 3.125rem auto;
+    color: #333;
+    -moz-box-pack: center;
+    box-pack: center;
+	-webkit-justify-content: center;
+    justify-content: center;
+    -webkit-flex-wrap: wrap;
+	-moz-flex-wrap: wrap;
+	-ms-flex-wrap: wrap;
+	-o-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+
+.header {
+    margin-bottom: 1rem;
+    position: relative;
+}
+
+.header h1 {
+    display: inline-block;
+    color: #b7ba6b;
+    text-align: center; 
+    margin-left: 2.5rem;
+}
+
+.header::before {
+    content: "";
+    display: inline-block;
+    width: 2rem;
+    height: 2rem;
+    background: url("../images/head.png") no-repeat;
+    background-size: 100% 100%;
+    position: absolute;
+    bottom: 0;
+    margin-right: 2rem;
+}
+
+.add-img, div[class*="btn-"] {
+    height: 5rem;
+    font-size: 1.5rem;
+    -moz-box-pack: center;
+    box-pack: center;
+	-webkit-justify-content: center;
+    justify-content: center;
+    -webkit-align-items: center;
+    -moz-align-items: center;
+    -ms-align-items: center;
+    -o-align-items: center;
+    align-items: center;
+}
+
+.add-img {
+    width: 100%;
+    box-sizing: border-box;
+    margin: 1.5rem auto;
+    border: 0.125rem solid #b7ba6b;
+    color: #333;
+    font-size: 1.5rem;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.add-img > label {
+    width: 100%;
+}
+
+.add-img > label > p {
+	-moz-box-pack: center;
+    box-pack: center;
+	-webkit-justify-content: center;
+    justify-content: center;
+    -webkit-align-items: center;
+    -moz-align-items: center;
+    -ms-align-items: center;
+    -o-align-items: center;
+    align-items: center;
+}
+
+.add-img p::before {
+    content: "";
+    display: inline-block;
+    width: 2.5rem;
+    height: 2.5rem;
+    background: url('../images/add.png') no-repeat top;
+    background-size: contain;
+    margin-right: 0.5rem;
+}
+
+.text {
+    width: 100%;
+    height: 6rem;
+    box-sizing: border-box;
+    margin: 1.5rem auto;
+    padding: 0.625rem 1.5rem;
+    background: #fefefe;
+    border: 0.125rem dashed #b7ba6b;
+    font-size: 1.5rem;
+    line-height: 1.5;
+    color: #5a6674;
+}
+
+.gen-con {
+    width: 100%;
+    margin: 1.5rem auto;
+    -moz-box-pack: space-between;
+    box-pack: space-between;
+	-webkit-justify-content: space-between;
+    justify-content: space-between;
+    -webkit-align-items: center;
+    -moz-align-items: center;
+    -ms-align-items: center;
+    -o-align-items: center;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.btn-gen {
+    width: 50%;
+    border: 0.125rem solid #b7ba6b;
+    margin: 0 0 -0.125rem -0.125rem;
+    color: #333;
+    -moz-box-pack: center;
+    box-pack: center;
+	-webkit-justify-content: center;
+    justify-content: center;
+    -webkit-align-items: center;
+    -moz-align-items: center;
+    -ms-align-items: center;
+    -o-align-items: center;
+    align-items: center;
+    -webkit-flex-shrink: 0;
+	-moz-flex-shrink: 0;
+	-ms-flex-shrink: 0;
+	-o-flex-shrink: 0;
+    flex-shrink: 0;
+}
+
+
+.btn-gen::before {
+    content: "";
+    display: inline-block;
+    width: 2.5rem;
+    height: 2.5rem;
+    background-size: contain;
+    margin-right: 0.5rem;
+}
+
+.btn-gen::before {
+    background: url('../images/gen.png') no-repeat top;
+}
+
+.show {
+    width: 80%;
+    margin: 1.5rem auto;
+}
+
+.show img {
+    min-width: 100%;
+    max-width: 100%;
+}
+
+.show p{
+    display: none;
+    min-width: 100%;
+    max-width: 100%;
+    text-align: center;
+    font-size: 1.5rem;
+    color: #b7ba6b;
+    padding: 1.25rem 0;
+    box-sizing: border-box;
+}
+
+.screen {
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    opacity: 0.8;
+    filter: alpha(opacity=80);
+    -webkit-filter: alpha(opacity=80);
+    z-index: 10;
+}
+
+.cancel {
+    position: fixed;
+    left: 0;
+    top: 0;
+    font-size: 1.5rem;
+    color: #fff;
+    padding: 2rem;
+    z-index: 9;
+}
+
+.confirm {
+    position: fixed;
+    right: 0;
+    top: 0;
+    font-size: 1.5rem;
+    color: #fff;
+    padding: 2rem;
+    z-index: 9;
+}
+
+#poster {
+    position: fixed;
+    left: -1000px;
+    top: -1000px;
+    z-index: -1;
+}
+
+
+.check-box {
+    width: 50%;
+    display: block;
+    text-align: right;
+    box-sizing: border-box;
+}
+
+.check-box p {
+    display: inline-block;
+    width: 35%;
+    text-align: center;
+    line-height: 2rem;
+    font-size: 1.5rem;
+}
+
+#check {
+    display: none;
+}
+
+#check:checked + label:after{
+    left: calc(100% - 2.75rem);
+}
+#check + label{
+    display: inline-block;
+    width: 70%;
+    height: 3rem;
+    position: relative;
+
+    box-sizing: border-box;
+    border: 0.125rem solid #b7ba6b;
+    -webkit-border-radius: 3.125rem;
+    -moz-border-radius: 3.125rem;
+    -o-border-radius: 3.125rem;
+    border-radius: 3.125rem;
+
+    -webkit-transition: 0.3s;
+    transition: 0.3s;
+}
+#check + label:after{
+    content: '';
+    display: block;
+    position: absolute;
+    left: 0.2rem;
+    top: 0;
+    bottom: 0;
+    margin: auto 0;
+    box-sizing: border-box;
+    background: #b7ba6b;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -o-border-radius: 50%;
+    border-radius: 50%;
+    width: 2.5rem;
+    height: 2.5rem;
+
+    -webkit-transition: 0.3s;
+    transition: 0.3s;
+    cursor: pointer;
+}
+

@@ -1,0 +1,63 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <meta name="format-detection" content="telephone=no,email=no">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="true">
+    <meta name="MobileOptimized" content="320">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="full-screen" content="yes">
+    <meta name="msapplication-tap-highlight" content="no">
+
+    <title>表情包文字添加工具</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.6/cropper.min.css">
+
+    <link rel="stylesheet" href="./css/common.css">
+    <link rel="stylesheet" href="./css/style.css">
+
+</head>
+<body>
+    <div class="main flex">
+        <div class="header">
+            <h1>表情包文字添加工具</h1>
+        </div>
+        
+        <div class="add-img flex">
+            <label>
+                <p class="flex">添加图片</p>
+                <input id="file" type="file" accept="image/png, image/jpeg,image/jpg, image/bmp" hidden />
+            </label>
+        </div>
+        <textarea type="text" placeholder="请输入文字..." class="text"></textarea>
+        <div class="gen-con flex">
+            <div class="btn-gen flex">生成</div>
+            <div class="check-box">        
+                <p>黑</p><p>白</p>
+                <div>
+                    <input type="checkbox" id="check">
+                    <label for="check"></label>
+                </div>
+
+            </div>
+        </div>
+        <div class="show">
+            <img id="result" width="100%"/>
+            <p>长按图片可保存~</p>
+        </div>
+    </div>
+
+    <div class="screen">
+        <div class="cancel">取消</div>
+        <div class="confirm">确定</div>
+    </div>
+
+    <canvas id="poster" width="400" height="400"></canvas>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.6/cropper.min.js"></script>
+    <script src="./js/main.js"></script>
+</body>
+</html>
