@@ -174,7 +174,6 @@ var controller = {
         });
 
         $("#switch").on("tap click", function() {
-            console.log("switch")
             var switchCode = $(this).attr("data-js");
             var flag = (switchCode == "0") ? false : true;
             if(_this.resImg) {   
