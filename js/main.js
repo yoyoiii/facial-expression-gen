@@ -29,30 +29,24 @@ var controller = {
 
     getTxt: function(success) {
         var _this = this;
-        var c = $("#poster")[0];
-        var cwidth = c.width, cheight = c.height;
-        var text = _this.txt;
-        var len = text.length;
-        if(len >= 0) {   // 有字 最多20
-            var startX = [],
-                startY = [cheight - 20], 
-                fontSize = 50,
-                contents = [];
-                contents.push(text.slice(0, 10));
-            if( len > 10) {
+        var text = _this.txt, len = text.length
+        var c = document.getElementById("poster"), cheight = c.height; 
+        var fontSize = 80, contents = [], startY = [];
+
+        if(len >= 0) {   // 有字
+            startY.push(cheight - 20);
+            contents.push(text.slice(0, 10));
+            if(len > 10) {
                 contents.splice(0, contents.length)
                 len = Math.ceil(len / 2)
-                contents.push(text.slice(0, len-1));
-                contents.push(text.slice(len-1));
-                startY.unshift(startY - fontSize - 10);
-            }
-
-            fontSize = 50 - (len - 7) * 5;
-            contents.map(content => {
-                startX.push((cwidth / 2) - (content.length / 2) * fontSize)
-            })
+                contents.unshift(text.slice(0, len));
+                contents.unshift(text.slice(len));
+            }  
+            
+            fontSize = fontSize - (len - 1) * 5;
+            startY.push(startY - fontSize - 5);
                      
-            success && success(contents, fontSize,startX, startY);
+            success && success(contents, fontSize, startY);
         }
     },
 
@@ -74,9 +68,9 @@ var controller = {
     makeExpression: function(flag) {
         var _this = this;
         var img = this.resImg;
-        var c = $("#poster")[0];
+        var c = document.getElementById("poster"), cwidth = c.width;
         var ctx = c.getContext('2d');
-        this.getTxt(function(contents, fontSize,startX, startY) {
+        this.getTxt(function(contents, fontSize, startY) {
             ctx.clearRect(0, 0, 400, 400);
             // 画图
             ctx.drawImage(img, 0, 0, 400, 400);
@@ -93,11 +87,11 @@ var controller = {
                 ctx.strokeStyle = "white"
             }
 
+            ctx.textAlign = "center";
+
             contents.forEach((content,index) => {
-                ctx.strokeText(content, startX[index], startY[index], 380);
-                ctx.strokeText(content, startX[index], startY[index], 380);
-                ctx.fillText(content, startX[index], startY[index], 380);
-                ctx.fillText(content, startX[index], startY[index], 380);
+                ctx.strokeText(content, cwidth/2, startY[index], 380);
+                ctx.fillText(content, cwidth/2, startY[index], 380);
             });
    
             var data = c.toDataURL("image/png", 1);
@@ -106,11 +100,12 @@ var controller = {
         })
     },
 
-    // 销毁裁剪框 重置inputfile
+    // 销毁裁剪框 重置inputfile和txt
     destroy: function() {
+        var _this = this;
         $(".screen").hide();
-        this.cropper.destroy();
-        this.cropper = null;
+        _this.cropper.destroy();
+        _this.cropper = null;
         $(".screen #target").remove();
         $("#file").val("");
     },
@@ -119,7 +114,8 @@ var controller = {
         var _this = this;
         $("#file").on("change", function() {
             var reader = new FileReader();
-            //filses就是input[type=file]文件列表，files[0]就是第一个文件，这里就是将选择的第一个图片文件转化为base64的码
+            // filses就是input[type=file]文件列表，files[0]就是第一个文件，这里就是将选择的第一个图片文件转化为base64的码
+            // this 是 dom 对象
             reader.readAsDataURL(this.files[0]);
             reader.onload = function(e) {
                 var upImg = new Image();
@@ -134,12 +130,12 @@ var controller = {
             }
         });
 
-        $(".cancel").on("click", function() {
-            var _this = this
-            _this.destroy()
+        $(".cancel").on("tap click", function() {
+            var _this = this;
+            _this.destroy();
         });
 
-        $(".confirm").on("click", function() {
+        $(".confirm").on("tap click", function() {
             var cutImg = _this.cropper.getCroppedCanvas({
                 imageSmoothingQuality: "high"
             });
@@ -159,34 +155,41 @@ var controller = {
         });
 
         $(".text").on("change", function() {
-            _this.txt = $(this).val();
-            if(_this.txt.length > 20) {
-                alert("字太多啦，请删减~");
-                _this.txt = "";
-            }
-        })
-
-        // 生成
-        $(".btn-gen").on("click", function() {    
-            if(_this.resImg) {   
-                _this.makeExpression(false); // 默认黑字
-                $(".text").val("");
-            } else {
-                alert("请先选择图片~")
+            if($(this).val().length <= 20) {
+                _this.txt = $(this).val();
             }
         });
 
-        $("#check").on("click", function(e) {
-            if(_this.resImg) {   
-                _this.makeExpression(e.target.checked);
+        // 生成
+        $(".btn-gen").on("tap click", function() {    
+            if(_this.resImg && _this.txt) {   
+                _this.makeExpression(false); // 默认黑字
+                $(".text").val("");
+                $("#switch").attr("data-js", "0");       
+            } else if(!_this.resImg) {
+                alert("请先选择图片~");
+            } else if(!_this.txt) {
+                alert("字太多啦，请删减~");
             }
-        })
+        });
+
+        $("#switch").on("tap click", function() {
+            console.log("switch")
+            var switchCode = $(this).attr("data-js");
+            var flag = (switchCode == "0") ? false : true;
+            if(_this.resImg) {   
+                _this.makeExpression(!flag);
+                $(this).attr("data-js", flag ? "0" : "1"); 
+            }
+        });
 
         // 禁止拖动
         $(".screen").on("touchmove", function(e) {
-            e.preventDefault()
+            e.preventDefault();
         });
     },
 };
 
-controller.init();
+$(function(){
+    controller.init();
+});
